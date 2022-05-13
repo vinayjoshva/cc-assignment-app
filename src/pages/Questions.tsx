@@ -1,18 +1,43 @@
 import { useEffect, useState } from "react";
 import QuestionCard, { QuestionType } from "../components/QuestionCard";
 import questions from "../questions.json";
-import { Box, Button, Typography, CircularProgress } from "@mui/material";
+import { Box, Button, Typography, CircularProgress, Pagination} from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles";
 import { useNavigate } from "react-router-dom";
+import { style } from "@mui/system";
 
 const TOTAL_QUESTIONS = questions.length;
+
+
+const useStyles = makeStyles((props) => ({
+  "unanswered": {
+    "& .MuiPaginationItem-root": {
+      backgroundColor: "grey",
+      color: "black"
+    }
+  },
+  "answered": {
+    "& .MuiPaginationItem-root": {
+      backgroundColor: "greenyellow",
+      color: "black"
+    }
+  },
+  "current": {
+    "& .MuiPaginationItem-root": {
+      backgroundColor: "#e6c300",
+      color: "black"
+    }
+  }
+}));
 
 const Questions = () => {
   const [currentQuestion, setCurrentQuestion] = useState(questions[0].id);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const classes = useStyles();
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1000);
+    setTimeout(() => setIsLoading(false), 1000); 
   }, []);
 
   function handleNextButtonClick(index: number) {
@@ -20,6 +45,12 @@ const Questions = () => {
       navigate("/results");
     } else {
       setCurrentQuestion((prev) => prev + 1);
+    }
+  }
+
+  function handleQuestionNumber(index: number) {
+    if(index) {
+      setCurrentQuestion(index);
     }
   }
 
@@ -49,6 +80,7 @@ const Questions = () => {
                     question={question.question}
                     questionType={question.questionType as QuestionType}
                     answers={question.answerOptions}
+                    Pagination = {<Pagination count={TOTAL_QUESTIONS} classes={{ ul: classes["unanswered"] }} page={question.id} onChange={(event, index) => handleQuestionNumber(index)} />}
                   />
                   <Box
                     sx={{

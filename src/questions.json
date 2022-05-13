@@ -25,6 +25,23 @@
     "id": 3,
     "question": "List down all the lifecycle methods in React",
     "questionType": "textInput",
-    "answerOptions": [{ "option": "componentDidMount", "isCorrect": true }]
+    "answerOptions": [{ "option": "componentDidMount", "isCorrect": true }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "what are the types of component in React?",
+    "questionType": "radio",
+    "answerOptions": [{ "option": "Functional components", "isCorrect": false },
+                      { "option": "Class components", "isCorrect": false },
+                      { "option": "All of the above", "isCorrect": true }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "Capital of Ukraine?",
+    "questionType": "textInput",
+    "answerOptions": [{ "option": "kyiv", "isCorrect": true }
+    ]
   }
 ]

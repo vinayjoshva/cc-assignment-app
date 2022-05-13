@@ -10,6 +10,7 @@ type QuestionCardProps = {
   question: string;
   questionType: QuestionType;
   answers: Array<any>;
+  Pagination: any;
 };
 
 export type QuestionType = "checkbox" | "radio" | "textInput";
@@ -19,17 +20,19 @@ function QuestionCard({
   question,
   questionType,
   answers,
+  Pagination,
 }: QuestionCardProps) {
   const { setAnswer } = actions;
   const [appData, dispatchAppData] = useContext(AppContext);
 
-  console.log("App data is", appData);
+  // console.log("App data is", appData);
 
   return (
     <Card
       sx={{
         padding: "2rem",
         width: "500px",
+        height: "400px",
         marginTop: "2rem",
         overflowY: "auto",
       }}
@@ -88,6 +91,9 @@ function QuestionCard({
             return <div>Not found</div>;
         }
       })()}
+      <Typography marginTop="2rem" textAlign="center">
+        {Pagination}
+      </Typography>
     </Card>
   );
 }

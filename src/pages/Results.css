@@ -1,0 +1,13 @@
+.container {
+  background-color:ghostwhite;
+  color: #192231;
+  padding: 20px;
+  height: 50vh;
+  width: 50vh;
+  border-radius: 20px;
+}
+
+h1{
+  text-align: center;
+  text-decoration: underline;
+}
